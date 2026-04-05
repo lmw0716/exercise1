@@ -6,15 +6,18 @@ on:
   pull_request:
     branches: [ "main" ]
 
-jobs:
-  build:
+env:
+  CONTAINER: darkrsw/2026-ds-exercise1:latest
 
-    runs-on: "ubuntu-20.04"
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
     container:
-      image: darkrsw/2026-ds-exercise1:latest
+      image: $CONTAINER
       credentials:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PAT }}
+         username: ${{ secrets.DOCKERHUB_USERNAME }}
+         password: ${{ secrets.DOCKERHUB_PAT  }}
 
     steps:
     - uses: actions/checkout@v4
