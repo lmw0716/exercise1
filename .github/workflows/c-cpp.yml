@@ -1,0 +1,27 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: "ubuntu-20.04"
+    container:
+      image: darkrsw/2026-ds-exercise1:latest
+      credentials:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PAT }}
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: copy files.
+      run: cp /app/ctest.cpp ./
+    - name: compile
+      run: g++ -o ctest.o ctest.cpp
+    - name: run with time
+      run: /usr/bin/time -v ./ctest.o
+    
