@@ -1,2 +1,3 @@
-# excercise1
-Data structures exercise 1
+# Exercise 1
+
+Implementing doubly linked list.
